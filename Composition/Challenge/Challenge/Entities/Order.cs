@@ -13,25 +13,42 @@ namespace Challenge.Entities {
         public Client Client { get; set; }
         public List<OrderItem> orderItens { get; set; } = new List<OrderItem>();
 
-       
-
-        public Order() { }
-
-
-        public AddItem(OrderItem orderItem) {
-            orderItens.Add(orderItem);
+        public Order() {
         }
-        public RemoveItem(OrderItem orderItem) {
+
+        public Order( Client client) {
+            Moment = DateTime.Now;
+            Status  = OrderStatus.PendingPayment;
+            Client = client;
+        }
+
+        public void AddItem(OrderItem item) {
+            orderItens.Add(item);
+           
+        }
+        public void RemoveItem(OrderItem orderItem) {
             orderItens.Remove(orderItem);
         }
 
         public double Total() {
             double total = 0;
             foreach (OrderItem item in orderItens) {
-                total += item.SubTotal;
+                total += item.SubTotal();
             }
             return total;
         }
 
+        public override string? ToString() {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("ORDER SUMMARY:");
+            sb.Append("Order Moment: ");
+            sb.Append(Moment.ToString("dd/MM/yyyy hh:mm:ss"));
+            sb.AppendLine("Status: ");
+            sb.Append(Status.ToString());
+            sb.AppendLine(Client.ToString());
+            sb.AppendLine("ORDER ITENS:");
+
+            return sb.ToString();
+        }
     }
 }

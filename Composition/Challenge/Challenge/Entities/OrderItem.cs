@@ -10,27 +10,36 @@ namespace Challenge.Entities {
 
         public Product Product { get; set; }
         public int Quantity { get; set; }
-        public Double Price { get;  }
+        public double Price { get; set; }
 
         public OrderItem() {
         }
 
-
-
-        public OrderItem( Product product, int quantity, double? price = null) {
+        public OrderItem(Product product, int quantity) {
             Product = product;
             Quantity = quantity;
-            SetPrice(price);
+           
         }
 
         public void SetPrice(double? price = null) {
-            Price = price ?? Price = Product.Price;
+            
+            Price = price ?? Product.Price;
         }
 
-        public Double SubTotal() {
-            return Quantity * Price;
-        } 
 
-      
+        public double SubTotal() {
+            return Quantity * Price;
+        }
+
+        public override string? ToString() {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(Product.Name);
+            sb.Append(", R$");
+            sb.Append(Price);
+            sb.Append(", Quantity: ");
+            sb.Append(Quantity);
+            sb.Append(", SubTotal: R$");
+            sb.Append(SubTotal().ToString("F2"));
+        }
     }
 }

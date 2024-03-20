@@ -21,6 +21,7 @@ namespace Challenge.Entities {
             sb.Append(Name);
             sb.Append(" R$:");
             sb.Append(Price);
+            return sb.ToString();
         }
     }
 }

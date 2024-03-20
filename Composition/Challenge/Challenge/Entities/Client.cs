@@ -17,5 +17,18 @@ namespace Challenge.Entities {
             this.email = email;
             this.birthDate = birthDate;
         }
+
+        public override string? ToString() {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Cliente: ");
+            sb.Append(Name);
+            sb.Append(" (");
+            sb.Append(birthDate.ToString("dd/MM/yyyy"));
+            sb.Append(") - ");
+            sb.Append(email);            
+            return sb.ToString();
+      
+
+        }
     }
 }
