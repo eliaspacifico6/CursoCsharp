@@ -18,7 +18,9 @@ namespace Challenge.Entities {
         public OrderItem(Product product, int quantity) {
             Product = product;
             Quantity = quantity;
-           
+            SetPrice();
+
+
         }
 
         public void SetPrice(double? price = null) {
@@ -39,7 +41,9 @@ namespace Challenge.Entities {
             sb.Append(", Quantity: ");
             sb.Append(Quantity);
             sb.Append(", SubTotal: R$");
-            sb.Append(SubTotal().ToString("F2"));
+            sb.Append(SubTotal().ToString("F2"));      
+
+            return sb.ToString();
         }
     }
 }

@@ -39,14 +39,29 @@ namespace Challenge.Entities {
         }
 
         public override string? ToString() {
+            double total = 0;
+            int i = 0;
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine("----------------");
             sb.AppendLine("ORDER SUMMARY:");
-            sb.Append("Order Moment: ");
-            sb.Append(Moment.ToString("dd/MM/yyyy hh:mm:ss"));
-            sb.AppendLine("Status: ");
-            sb.Append(Status.ToString());
+            sb.Append("  Order Moment: ");
+            sb.AppendLine(Moment.ToString("dd/MM/yyyy hh:mm:ss"));
+            sb.Append("  Status: ");
+            sb.AppendLine(Status.ToString());
+            sb.Append("  ");
             sb.AppendLine(Client.ToString());
+       
             sb.AppendLine("ORDER ITENS:");
+
+            foreach (OrderItem item in orderItens) {
+                i++;
+                sb.Append($"  #{i} ");
+                sb.AppendLine(item.ToString());
+                total += item.SubTotal();
+            }
+            sb.AppendLine("----------------");
+            sb.Append("  Total Price: R$");
+            sb.Append(total.ToString("F2") );
 
             return sb.ToString();
         }
