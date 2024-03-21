@@ -13,9 +13,12 @@
         public void Loan( double amount ) {
 
             if (LoanLimit <= amount) {
-                Balance += amount;
+                base.Withdraw( amount );
+                Balance -= 2;
             }
 
         }
+
+      
     }
 }
